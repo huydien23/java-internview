@@ -9,10 +9,30 @@ import { ALL_QUESTIONS } from './constants';
 import type { Question, QuestionStatus } from './types';
 
 export type AppMode = 'home' | 'study' | 'flashcards' | 'interview';
+type ThemeMode = 'light' | 'dark';
 
 const App: React.FC = () => {
   const [mode, setMode] = useState<AppMode>('home');
   const [questions, setQuestions] = useState<Question[]>([]);
+  const [theme, setTheme] = useState<ThemeMode>('light');
+  const isDarkMode = theme === 'dark';
+
+  useEffect(() => {
+    const savedTheme = localStorage.getItem('javaInterviewTheme') as ThemeMode | null;
+    if (savedTheme) {
+      setTheme(savedTheme);
+      return;
+    }
+
+    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      setTheme('dark');
+    }
+  }, []);
+
+  useEffect(() => {
+    document.body.classList.toggle('dark', isDarkMode);
+    localStorage.setItem('javaInterviewTheme', theme);
+  }, [isDarkMode, theme]);
 
   useEffect(() => {
     const savedProgress = localStorage.getItem('javaInterviewProgress');
@@ -47,6 +67,10 @@ const App: React.FC = () => {
     setMode(newMode);
   }, []);
 
+  const toggleTheme = useCallback(() => {
+    setTheme(prev => (prev === 'dark' ? 'light' : 'dark'));
+  }, []);
+
   const renderContent = () => {
     switch (mode) {
       case 'study':
@@ -62,8 +86,8 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen font-sans text-slate-800 flex flex-col">
-      <Header onSetMode={handleSetMode} />
+    <div className={`min-h-screen font-sans flex flex-col transition-colors duration-300 ${isDarkMode ? 'bg-slate-900 text-slate-100' : 'bg-slate-100 text-slate-800'}`}>
+      <Header onSetMode={handleSetMode} isDarkMode={isDarkMode} onToggleTheme={toggleTheme} />
       <main className="flex-grow p-4 sm:p-6 md:p-8 pt-24 max-w-7xl mx-auto w-full">
         {renderContent()}
       </main>

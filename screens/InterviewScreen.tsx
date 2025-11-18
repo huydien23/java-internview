@@ -73,8 +73,8 @@ const InterviewScreen: React.FC = () => {
     if (interviewState === 'not_started') {
         return (
             <div className="text-center">
-                <h1 className="text-4xl font-bold mb-4 text-slate-900">Phỏng vấn thử với AI</h1>
-                <p className="text-lg text-slate-600 mb-8">
+                <h1 className="text-4xl font-bold mb-4 text-slate-900 dark:text-white">Phỏng vấn thử với AI</h1>
+                <p className="text-lg text-slate-600 dark:text-slate-300 mb-8">
                     Bạn sẽ nhận được {INTERVIEW_QUESTION_COUNT} câu hỏi ngẫu nhiên. Hãy trả lời một cách chi tiết. Sau khi hoàn thành, AI sẽ chấm điểm và đưa ra nhận xét cho từng câu trả lời của bạn.
                 </p>
                 <button
@@ -90,8 +90,8 @@ const InterviewScreen: React.FC = () => {
     if (interviewState === 'evaluating') {
         return (
             <div className="text-center">
-                <h1 className="text-3xl font-bold mb-4 text-slate-900">AI đang phân tích câu trả lời của bạn...</h1>
-                <p className="text-slate-600 mb-8">Quá trình này có thể mất một vài giây. Vui lòng chờ.</p>
+                <h1 className="text-3xl font-bold mb-4 text-slate-900 dark:text-white">AI đang phân tích câu trả lời của bạn...</h1>
+                <p className="text-slate-600 dark:text-slate-300 mb-8">Quá trình này có thể mất một vài giây. Vui lòng chờ.</p>
                 <LoadingSpinner />
             </div>
         );
@@ -100,17 +100,17 @@ const InterviewScreen: React.FC = () => {
     if (interviewState === 'results') {
         return (
             <div>
-                <h1 className="text-4xl font-bold text-center mb-4 text-slate-900">Kết quả phỏng vấn</h1>
-                 <div className="text-center mb-8 bg-white p-6 rounded-xl shadow-lg max-w-sm mx-auto">
-                    <h2 className="text-2xl font-bold text-slate-800">Điểm trung bình</h2>
-                    <p className={`text-6xl font-extrabold mt-2 ${Number(averageScore) >= 7 ? 'text-green-600' : Number(averageScore) >= 4 ? 'text-yellow-600' : 'text-red-600'}`}>
+                <h1 className="text-4xl font-bold text-center mb-4 text-slate-900 dark:text-white">Kết quả phỏng vấn</h1>
+                 <div className="text-center mb-8 bg-white dark:bg-slate-900/60 p-6 rounded-xl shadow-lg max-w-sm mx-auto">
+                    <h2 className="text-2xl font-bold text-slate-800 dark:text-white">Điểm trung bình</h2>
+                    <p className={`text-6xl font-extrabold mt-2 ${Number(averageScore) >= 7 ? 'text-green-500' : Number(averageScore) >= 4 ? 'text-yellow-500' : 'text-red-500'}`}>
                         {averageScore} / 10
                     </p>
                 </div>
                 {results.map((result, index) => (
-                    <div key={result.question.id} className="bg-white p-6 rounded-xl shadow-lg mb-6">
+                    <div key={result.question.id} className="bg-white dark:bg-slate-800 p-6 rounded-xl shadow-lg mb-6">
                         <div className="flex justify-between items-start">
-                            <h3 className="text-xl font-bold text-slate-800 mb-2 pr-4">{index + 1}. {result.question.question}</h3>
+                            <h3 className="text-xl font-bold text-slate-800 dark:text-white mb-2 pr-4">{index + 1}. {result.question.question}</h3>
                             {hintsRevealed[result.question.id] && (
                                 <span className="flex-shrink-0 text-xs font-semibold inline-flex items-center px-2.5 py-0.5 rounded-full bg-amber-100 text-amber-800" title="Bạn đã xem gợi ý cho câu này">
                                     <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1" viewBox="0 0 20 20" fill="currentColor">
@@ -122,25 +122,25 @@ const InterviewScreen: React.FC = () => {
                             )}
                         </div>
 
-                        <div className="mt-4 p-4 bg-slate-50 rounded-lg border border-slate-200">
-                           <h4 className="font-semibold text-slate-600 mb-2">Câu trả lời của bạn:</h4>
-                           <p className="text-slate-700 whitespace-pre-wrap">{result.userAnswer}</p>
+                        <div className="mt-4 p-4 bg-slate-50 dark:bg-slate-900/60 rounded-lg border border-slate-200 dark:border-slate-700">
+                           <h4 className="font-semibold text-slate-600 dark:text-slate-300 mb-2">Câu trả lời của bạn:</h4>
+                           <p className="text-slate-700 dark:text-slate-200 whitespace-pre-wrap">{result.userAnswer}</p>
                         </div>
-                        <div className="mt-4 p-4 bg-blue-50 rounded-lg border border-blue-200">
-                           <h4 className="font-semibold text-blue-800 mb-2">Phản hồi từ AI (Điểm: {result.feedback?.score}/10):</h4>
+                        <div className="mt-4 p-4 bg-blue-50 dark:bg-blue-900/30 rounded-lg border border-blue-200 dark:border-blue-800">
+                           <h4 className="font-semibold text-blue-800 dark:text-blue-200 mb-2">Phản hồi từ AI (Điểm: {result.feedback?.score}/10):</h4>
                            <div className="mt-2">
-                                <p className="font-semibold text-green-700">Điểm mạnh:</p>
-                                <p className="text-slate-700 whitespace-pre-wrap" dangerouslySetInnerHTML={{ __html: result.feedback?.feedback.strengths || ''}}></p>
+                                <p className="font-semibold text-green-700 dark:text-green-400">Điểm mạnh:</p>
+                                <p className="text-slate-700 dark:text-slate-200 whitespace-pre-wrap" dangerouslySetInnerHTML={{ __html: result.feedback?.feedback.strengths || ''}}></p>
                            </div>
                            <div className="mt-3">
-                                <p className="font-semibold text-orange-700">Góp ý cải thiện:</p>
-                                <p className="text-slate-700 whitespace-pre-wrap" dangerouslySetInnerHTML={{ __html: result.feedback?.feedback.improvements || ''}}></p>
+                                <p className="font-semibold text-orange-700 dark:text-orange-400">Góp ý cải thiện:</p>
+                                <p className="text-slate-700 dark:text-slate-200 whitespace-pre-wrap" dangerouslySetInnerHTML={{ __html: result.feedback?.feedback.improvements || ''}}></p>
                            </div>
                         </div>
                     </div>
                 ))}
                 <div className="text-center mt-8">
-                     <button
+                    <button
                         onClick={startInterview}
                         className="bg-blue-600 text-white px-8 py-3 rounded-lg text-lg font-semibold hover:bg-blue-700 transition-transform duration-200 hover:scale-105"
                     >
@@ -155,14 +155,14 @@ const InterviewScreen: React.FC = () => {
     const currentQuestion = questions[currentQuestionIndex];
     return (
          <div>
-             <h1 className="text-3xl font-bold text-center mb-6 text-slate-900">Câu hỏi {currentQuestionIndex + 1} / {questions.length}</h1>
-             <div className="bg-white p-8 rounded-xl shadow-lg">
-                <p className="text-xl font-semibold text-slate-800 mb-4">{currentQuestion.question}</p>
+             <h1 className="text-3xl font-bold text-center mb-6 text-slate-900 dark:text-white">Câu hỏi {currentQuestionIndex + 1} / {questions.length}</h1>
+             <div className="bg-white dark:bg-slate-800 p-8 rounded-xl shadow-lg">
+                <p className="text-xl font-semibold text-slate-800 dark:text-white mb-4">{currentQuestion.question}</p>
                 <textarea
                     value={answers[currentQuestion.id] || ''}
                     onChange={(e) => handleAnswerChange(currentQuestion.id, e.target.value)}
                     rows={10}
-                    className="w-full p-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
+                    className="w-full p-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition dark:bg-slate-900 dark:border-slate-700 dark:text-slate-100"
                     placeholder="Nhập câu trả lời của bạn ở đây..."
                 />
                 <div className="mt-4">
@@ -177,9 +177,9 @@ const InterviewScreen: React.FC = () => {
                         {isHintVisible ? 'Ẩn gợi ý' : 'Xem gợi ý đáp án'}
                     </button>
                     {isHintVisible && (
-                        <div className="mt-2 p-4 bg-amber-50 border border-amber-200 rounded-lg animate-fade-in">
-                            <h4 className="font-bold text-amber-800">Đáp án tham khảo:</h4>
-                            <div className="text-slate-700" dangerouslySetInnerHTML={{ __html: currentQuestion.answer }}></div>
+                        <div className="mt-2 p-4 bg-amber-50 dark:bg-amber-900/40 border border-amber-200 dark:border-amber-700 rounded-lg animate-fade-in">
+                            <h4 className="font-bold text-amber-800 dark:text-amber-300">Đáp án tham khảo:</h4>
+                            <div className="text-slate-700 dark:text-slate-200" dangerouslySetInnerHTML={{ __html: currentQuestion.answer }}></div>
                         </div>
                     )}
                 </div>
@@ -188,7 +188,7 @@ const InterviewScreen: React.FC = () => {
                  <button
                     onClick={() => handleNavigation(currentQuestionIndex - 1)}
                     disabled={currentQuestionIndex === 0}
-                    className="px-6 py-2 bg-white rounded-lg shadow hover:bg-slate-100 font-semibold disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="px-6 py-2 bg-white dark:bg-slate-800 rounded-lg shadow hover:bg-slate-100 dark:hover:bg-slate-700 font-semibold disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                     Trước
                 </button>

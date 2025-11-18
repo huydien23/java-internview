@@ -57,14 +57,14 @@ const Pagination: React.FC<PaginationProps> = ({ currentPage, totalPages, onPage
             <button
                 onClick={() => onPageChange(currentPage - 1)}
                 disabled={currentPage === 1}
-                className="px-3 py-2 bg-white rounded-lg shadow-md hover:bg-slate-100 font-semibold disabled:opacity-50 disabled:cursor-not-allowed text-sm"
+                className="px-3 py-2 bg-white dark:bg-slate-800 rounded-lg shadow-md hover:bg-slate-100 dark:hover:bg-slate-700 font-semibold disabled:opacity-50 disabled:cursor-not-allowed text-sm text-slate-700 dark:text-slate-200"
                 aria-label="Go to previous page"
             >
                 Trước
             </button>
             {pageNumbers.map((number, index) =>
                 typeof number === 'string' ? (
-                    <span key={`ellipsis-${index}`} className="px-3 py-2 text-slate-500 self-end">...</span>
+                    <span key={`ellipsis-${index}`} className="px-3 py-2 text-slate-500 dark:text-slate-400 self-end">...</span>
                 ) : (
                     <button
                         key={number}
@@ -72,7 +72,7 @@ const Pagination: React.FC<PaginationProps> = ({ currentPage, totalPages, onPage
                         className={`px-3 py-2 rounded-lg shadow-md font-semibold text-sm w-10 h-10 flex items-center justify-center ${
                             currentPage === number
                                 ? 'bg-blue-600 text-white'
-                                : 'bg-white hover:bg-slate-100'
+                                : 'bg-white text-slate-700 hover:bg-slate-100 dark:bg-slate-800 dark:text-slate-200 dark:hover:bg-slate-700'
                         }`}
                         aria-current={currentPage === number ? 'page' : undefined}
                     >
@@ -83,7 +83,7 @@ const Pagination: React.FC<PaginationProps> = ({ currentPage, totalPages, onPage
             <button
                 onClick={() => onPageChange(currentPage + 1)}
                 disabled={currentPage === totalPages}
-                className="px-3 py-2 bg-white rounded-lg shadow-md hover:bg-slate-100 font-semibold disabled:opacity-50 disabled:cursor-not-allowed text-sm"
+                className="px-3 py-2 bg-white dark:bg-slate-800 rounded-lg shadow-md hover:bg-slate-100.dark:hover:bg-slate-700 font-semibold disabled:opacity-50 disabled:cursor-not-allowed text-sm text-slate-700 dark:text-slate-200"
                 aria-label="Go to next page"
             >
                 Tiếp

@@ -20,27 +20,27 @@ const ProgressSummary: React.FC<{ questions: Question[] }> = ({ questions }) => 
     }, [questions]);
 
     return (
-        <div className="mb-12 bg-white p-6 rounded-xl shadow-md border border-slate-200">
-            <h2 className="text-2xl font-bold text-slate-800 mb-4">Tổng quan tiến độ</h2>
-            <div className="w-full bg-slate-200 rounded-full h-4 mb-2">
-                <div 
-                    className="bg-blue-600 h-4 rounded-full transition-all duration-500" 
+        <div className="mb-12 bg-white p-6 rounded-xl shadow-md border border-slate-200 dark:bg-slate-800 dark:border-slate-700">
+            <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-4">Tổng quan tiến độ</h2>
+            <div className="w-full bg-slate-200 dark:bg-slate-700 rounded-full h-4 mb-2">
+                <div
+                    className="bg-blue-600 h-4 rounded-full transition-all duration-500"
                     style={{ width: `${stats.percent}%` }}
                 ></div>
             </div>
-            <p className="text-right font-semibold text-blue-700">{stats.percent}% Đã học ({stats.learned}/{questions.length})</p>
+            <p className="text-right font-semibold text-blue-500 dark:text-blue-400">{stats.percent}% Đã học ({stats.learned}/{questions.length})</p>
             <div className="mt-4 flex justify-around text-center">
                 <div>
-                    <p className="text-2xl font-bold text-green-600">{stats.learned}</p>
-                    <p className="text-sm text-slate-500">Đã học</p>
+                    <p className="text-2xl font-bold text-green-500">{stats.learned}</p>
+                    <p className="text-sm text-slate-500 dark:text-slate-300">Đã học</p>
                 </div>
                 <div>
-                    <p className="text-2xl font-bold text-yellow-600">{stats.toReview}</p>
-                    <p className="text-sm text-slate-500">Cần xem lại</p>
+                    <p className="text-2xl font-bold text-yellow-500">{stats.toReview}</p>
+                    <p className="text-sm text-slate-500 dark:text-slate-300">Cần xem lại</p>
                 </div>
                 <div>
-                    <p className="text-2xl font-bold text-red-600">{stats.important}</p>
-                    <p className="text-sm text-slate-500">Quan trọng</p>
+                    <p className="text-2xl font-bold text-red-500">{stats.important}</p>
+                    <p className="text-sm text-slate-500 dark:text-slate-300">Quan trọng</p>
                 </div>
             </div>
         </div>
@@ -51,11 +51,11 @@ const ProgressSummary: React.FC<{ questions: Question[] }> = ({ questions }) => 
 const ModeCard: React.FC<{ title: string; description: string; onClick: () => void; icon: React.ReactNode }> = ({ title, description, onClick, icon }) => (
     <div
         onClick={onClick}
-        className="bg-white p-8 rounded-xl shadow-lg hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 cursor-pointer flex flex-col items-center text-center h-full"
+        className="bg-white dark:bg-slate-800 p-8 rounded-xl shadow-lg hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 cursor-pointer flex flex-col items-center text-center h-full"
     >
-        <div className="text-blue-600 mb-4">{icon}</div>
-        <h2 className="text-2xl font-bold text-slate-800 mb-2">{title}</h2>
-        <p className="text-slate-600">{description}</p>
+        <div className="text-blue-500 dark:text-blue-400 mb-4">{icon}</div>
+        <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-2">{title}</h2>
+        <p className="text-slate-600 dark:text-slate-300">{description}</p>
     </div>
 );
 
@@ -80,8 +80,8 @@ const HomeScreen: React.FC<HomeScreenProps> = ({ onSetMode, questions }) => {
   return (
     <div className="container mx-auto">
         <div className="text-center mb-12">
-            <h1 className="text-5xl font-extrabold text-slate-900">Trở thành Chuyên gia Java</h1>
-            <p className="text-xl text-slate-600 mt-4">
+            <h1 className="text-5xl font-extrabold text-slate-900 dark:text-white">Trở thành Chuyên gia Java</h1>
+            <p className="text-xl text-slate-600 dark:text-slate-300 mt-4">
                 Luyện tập với các câu hỏi phỏng vấn thực tế, ôn tập với flashcards, và thử sức với bài phỏng vấn được chấm điểm bởi AI.
             </p>
         </div>
