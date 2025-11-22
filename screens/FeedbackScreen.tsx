@@ -120,7 +120,7 @@ const FeedbackScreen: React.FC = () => {
 
     if (!isEmailConfigured) {
       setSubmitState('error');
-      setStatusMessage('Cần cấu hình EmailJS (service, template, public key) trong biến môi trường.');
+      // setStatusMessage('Cần cấu hình EmailJS (service, template, public key) trong biến môi trường.');
       return;
     }
 
