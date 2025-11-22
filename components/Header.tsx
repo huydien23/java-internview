@@ -58,6 +58,12 @@ const Header: React.FC<HeaderProps> = ({ onSetMode, isDarkMode, onToggleTheme })
            >
              Phỏng vấn thử
            </button>
+           <button 
+             onClick={() => handleNavClick('feedback')} 
+             className="text-slate-600 hover:text-blue-600 font-medium transition-colors duration-200 dark:text-slate-200 dark:hover:text-blue-400"
+           >
+             Liên hệ
+           </button>
            <button
              onClick={onToggleTheme}
              className="ml-4 p-2 rounded-full border border-slate-200 hover:border-blue-500 transition-colors duration-200 dark:border-slate-700 dark:hover:border-blue-400"
@@ -100,6 +106,9 @@ const Header: React.FC<HeaderProps> = ({ onSetMode, isDarkMode, onToggleTheme })
             </button>
              <button onClick={() => handleNavClick('interview')} className="block w-full text-left px-4 py-3 text-slate-600 hover:bg-slate-100 hover:text-blue-600 transition-colors dark:text-slate-200 dark:hover:bg-slate-800 dark:hover:text-blue-400">
                 Phỏng vấn thử
+            </button>
+            <button onClick={() => handleNavClick('feedback')} className="block w-full text-left px-4 py-3 text-slate-600 hover:bg-slate-100 hover:text-blue-600 transition-colors dark:text-slate-200 dark:hover:bg-slate-800 dark:hover:text-blue-400">
+                Liên hệ
             </button>
        </div>
     </header>

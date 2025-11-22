@@ -108,6 +108,7 @@ const HomeScreen: React.FC<HomeScreenProps> = ({ onSetMode, questions }) => {
                 icon={<MicIcon />}
             />
         </div>
+
     </div>
   );
 };

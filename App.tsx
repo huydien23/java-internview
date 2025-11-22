@@ -5,10 +5,11 @@ import HomeScreen from './screens/HomeScreen';
 import StudyScreen from './screens/StudyScreen';
 import FlashcardScreen from './screens/FlashcardScreen';
 import InterviewScreen from './screens/InterviewScreen';
+import FeedbackScreen from './screens/FeedbackScreen';
 import { ALL_QUESTIONS } from './constants';
 import type { Question, QuestionStatus } from './types';
 
-export type AppMode = 'home' | 'study' | 'flashcards' | 'interview';
+export type AppMode = 'home' | 'study' | 'flashcards' | 'interview' | 'feedback';
 type ThemeMode = 'light' | 'dark';
 
 const App: React.FC = () => {
@@ -79,6 +80,8 @@ const App: React.FC = () => {
         return <FlashcardScreen questions={questions} />;
       case 'interview':
         return <InterviewScreen />;
+      case 'feedback':
+        return <FeedbackScreen />;
       case 'home':
       default:
         return <HomeScreen onSetMode={handleSetMode} questions={questions} />;
